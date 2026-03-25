@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: finance_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456password
+      POSTGRES_DB: finance_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+    # Thêm kiểm tra sức khỏe cho DB
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d finance_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: finance_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      db:
+        condition: service_healthy # Backend chỉ chạy khi DB thực sự "khỏe mạnh" và sẵn sàng
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: finance_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    environment:
+      - WATCHPACK_POLLING=true
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  postgres_data:
