@@ -22,3 +22,6 @@ frontend/.pnp
 frontend/.pnp.js
 frontend/coverage/
 frontend/build/
+# --- Docker & Virtual Env (Bổ sung) ---
+postgres_data/
+.venv/

@@ -1,0 +1,29 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "Firstconnect",
+      "database": "myshop",
+      "username": "admin",
+      "password": "12345"
+    },
+    {
+      "ssh": "Disabled",
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5433,
+      "driver": "PostgreSQL",
+      "name": "Finance_DB_Docker",
+      "database": "finance_db",
+      "username": "admin",
+      "password": "123456password"
+    }
+  ]
+}
