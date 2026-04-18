@@ -12,7 +12,7 @@ engine = create_engine(DB_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
-# Hàm hỗ trợ lấy database session
+
 def get_db():
     db = SessionLocal()
     try:

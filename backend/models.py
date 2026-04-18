@@ -14,9 +14,9 @@ class User(Base):
     # Mối quan hệ: 1 User có nhiều Giao dịch
     transactions = relationship("Transaction", back_populates="owner")
 
-# BẢNG CŨ ĐƯỢC NÂNG CẤP
+
 class Transaction(Base):
-    __tablename__ = "user_transactions" # Đổi tên bảng để tạo mới hoàn toàn
+    __tablename__ = "user_transactions" 
 
     id = Column(Integer, primary_key=True, index=True)
     amount = Column(Float, nullable=False)
@@ -25,8 +25,8 @@ class Transaction(Base):
     transaction_type = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
     
-    # KHOÁ NGOẠI: Giao dịch này thuộc về ai?
+
     owner_id = Column(Integer, ForeignKey("users.id")) 
     
-    # Mối quan hệ ngược lại
+   
     owner = relationship("User", back_populates="transactions")

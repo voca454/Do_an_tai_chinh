@@ -1,14 +1,15 @@
-import google.generativeai as genai
-import os
-from dotenv import load_dotenv
+import json
+from nlp_service import process_finance_text
 
-load_dotenv()
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-print("Đang kiểm tra các model khả dụng cho API Key của bạn...")
-try:
-    for m in genai.list_models():
-        if 'generateContent' in m.supported_generation_methods:
-            print(f"👉 Tên model hợp lệ: {m.name}")
-except Exception as e:
-    print(f"Lỗi truy cập Key: {e}")
+text_input = "Sáng nay đổ xăng đi học hết 50 ngàn đồng"
+print(f"Người dùng nhập: '{text_input}'")
+print("-" * 40)
+print("Đang gửi dữ liệu lên Google Gemini API để bóc tách...\n")
+
+
+result_dict = process_finance_text(text_input)
+
+
+print("Kết quả JSON thu được:")
+print(json.dumps(result_dict, indent=4, ensure_ascii=False))
