@@ -24,8 +24,6 @@ def process_finance_text(text: str):
         """
         
         response = model.generate_content(prompt)
-        
-       
         res_text = response.text.strip()
         if "```json" in res_text:
             res_text = res_text.split("```json")[1].split("```")[0].strip()

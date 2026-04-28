@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv() # Tự động lấy thông tin từ file .env
 
-DB_URL = "postgresql+psycopg2://admin:123456password@db:5432/finance_db"
+DB_URL = "postgresql+psycopg2://admin:123456password@finance_db:5432/finance_db"
 
 engine = create_engine(DB_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

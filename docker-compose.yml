@@ -27,7 +27,7 @@ services:
       - ./backend:/app
     depends_on:
       db:
-        condition: service_healthy # Backend chỉ chạy khi DB thực sự "khỏe mạnh" và sẵn sàng
+        condition: service_healthy
     restart: always
   frontend:
     build: ./frontend
